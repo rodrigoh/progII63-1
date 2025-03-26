@@ -19,7 +19,5 @@ public class ExemploRandom {
 		numero = aleatorio.nextInt(65,97);
 		char letra = (char) numero;
 		System.out.println(letra);
-		String palavra = "casa";
-		String nova = palavra;
 	}
 }
