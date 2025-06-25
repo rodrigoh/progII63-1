@@ -1,11 +1,11 @@
 package aula17;
 
-public class Lista {
-	private String[] elementos;
+public class Lista<T> {
+	private T[] elementos;
 	private int tamanho;
 
 	public Lista(int capacidade){
-		elementos = new String[capacidade];
+		elementos = (T[]) new Object[capacidade];
 		tamanho = 0;
 	}
 
@@ -13,7 +13,7 @@ public class Lista {
 	 * Adicionar um elemento no final da lista
 	 * @param elemento elemento a ser adicionado
 	 */
-	public void adiciona(String elemento){
+	public void adiciona(T elemento){
 		aumentaCapacidade();
 		elementos[tamanho] = elemento;
 		tamanho++;
@@ -24,7 +24,7 @@ public class Lista {
 	 * @param posicao posição do elemento
 	 * @param elemento elemento que deseja adicionar
 	 */
-	public void adiciona(int posicao, String elemento){
+	public void adiciona(int posicao, T elemento){
 		if(posicao<0 || posicao>=tamanho){
 			throw new IllegalArgumentException("Posição "+posicao+" não é válida");
 		}
@@ -42,7 +42,7 @@ public class Lista {
 
 	private void aumentaCapacidade(){
 		if(tamanho == elementos.length){
-			String[] aux = new String[tamanho*2];
+			T[] aux = (T[]) new Object[tamanho*2];
 			for (int i = 0; i < tamanho; i++) {
 				aux[i] = elementos[i];
 			}
@@ -76,7 +76,7 @@ public class Lista {
 	 * @param posicao posição do elemento desejado
 	 * @return o elemento ou uma IllegalArgumentException caso a posição seja inválida
 	 */
-	public String obter(int posicao){
+	public T obter(int posicao){
 		if(posicao<0 || posicao>=tamanho){
 			throw new IllegalArgumentException("Posição "+posicao+" não é válida");
 		}
@@ -87,7 +87,7 @@ public class Lista {
 	 * @param elemento elemento que estamos buscando
 	 * @return posição do elemento ou -1 se ele não existir
 	 */
-	public int posicaoDe(String elemento){
+	public int posicaoDe(T elemento){
 		for (int i = 0; i < tamanho; i++) {
 			if(elemento.equals(elementos[i]))
 				return i;
@@ -107,11 +107,11 @@ public class Lista {
 	 * @param posicao posição do elemento que deseja remover
 	 * @return o elemento removido
 	 */
-	public String remove(int posicao){
+	public T remove(int posicao){
 		if(posicao<0 || posicao>=tamanho){
 			throw new IllegalArgumentException("Posição "+posicao+" não é válida");
 		}
-		String copia = elementos[posicao];
+		T copia = elementos[posicao];
 		for (int i = posicao; i < tamanho-1; i++) {
 			elementos[i] = elementos[i+1];
 		}
